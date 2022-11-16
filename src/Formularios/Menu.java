@@ -63,6 +63,7 @@ public class Menu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         JBTNSongToPLaylist = new javax.swing.JButton();
         JTNPlay = new javax.swing.JButton();
+        JBTArtshow = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,6 +177,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        JBTArtshow.setBackground(new java.awt.Color(102, 102, 102));
+        JBTArtshow.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        JBTArtshow.setForeground(new java.awt.Color(255, 255, 255));
+        JBTArtshow.setText("Ordenar por Artista");
+        JBTArtshow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBTArtshowActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,10 +202,6 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(JBTN_backup, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBTNSongToPLaylist)
-                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +214,13 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(16, 16, 16))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(JBTSong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBTNSongToPLaylist, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JBTArtshow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(103, 103, 103)
@@ -240,7 +253,9 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(JBTN_backup)
                     .addComponent(JBTNSongToPLaylist))
                 .addGap(18, 18, 18)
-                .addComponent(JBTN_logout)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBTN_logout)
+                    .addComponent(JBTArtshow))
                 .addGap(30, 30, 30))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -338,6 +353,13 @@ public static int ValMod=0;
         this.setVisible(false);
     }//GEN-LAST:event_JTNPlayActionPerformed
 
+    private void JBTArtshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBTArtshowActionPerformed
+        // TODO add your handling code here:
+        ShowArtist sa1 = new ShowArtist();
+        sa1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_JBTArtshowActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,6 +400,8 @@ public static int ValMod=0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBTArtshow;
+    private javax.swing.JButton JBTNArtist;
     private javax.swing.JButton JBTNSongToPLaylist;
     private javax.swing.JButton JBTN_IngresarUser;
     private javax.swing.JButton JBTN_backup;
