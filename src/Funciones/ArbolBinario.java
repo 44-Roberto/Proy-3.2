@@ -204,6 +204,8 @@ public class ArbolBinario {
                     fileInfo[i][0] = line[0];
                     fileInfo[i][1] = line[1];
                 }
+                LecturaArchivo.close();
+                LeerArchivo.close();
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", WIDTH);
             }
@@ -233,6 +235,9 @@ public class ArbolBinario {
         } 
         
     }
+    
+    
+    
     public String[] getArreglo(String Linea)
     {
         String[] arreglo =Linea.split("[|]");

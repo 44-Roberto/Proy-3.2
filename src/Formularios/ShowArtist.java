@@ -24,9 +24,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import jaco.mp3.player.MP3Player;
-
-
-
+import java.io.PrintWriter;
+import Formularios.*;
+//import FileOutputStream;
 
 
 /**
@@ -54,7 +54,7 @@ public class ShowArtist extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         JBTNMover = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        JTAList = new javax.swing.JTextArea();
         JBTNReturn = new javax.swing.JButton();
         JBTNMostrar = new javax.swing.JButton();
 
@@ -72,12 +72,12 @@ public class ShowArtist extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        JTAList.setBackground(new java.awt.Color(102, 102, 102));
+        JTAList.setColumns(20);
+        JTAList.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        JTAList.setForeground(new java.awt.Color(255, 255, 255));
+        JTAList.setRows(5);
+        jScrollPane1.setViewportView(JTAList);
 
         JBTNReturn.setBackground(new java.awt.Color(102, 102, 102));
         JBTNReturn.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -154,6 +154,22 @@ public class ShowArtist extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JBTNReturnActionPerformed
 
+    
+    public void LimpiarAS()
+    {
+        try {
+           
+            PrintWriter writer = new PrintWriter("C:\\MEIA\\arbol_binario.txt");
+            writer.print("");
+            writer.close();
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ShowArtist.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ShowArtist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public String ObtenerAdmin()
     {
         ArchivoSecuencial as = new ArchivoSecuencial();
@@ -165,6 +181,7 @@ public class ShowArtist extends javax.swing.JFrame {
     private void JBTNMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBTNMoverActionPerformed
         // TODO add your handling code here:
         JBTNMostrar.setEnabled(true);
+        
         //Limpiar el arbol cada que se inicia una nueva permutacion en el botón
        ArrayList<String> ListaCanciones = new ArrayList<>();
        String admin=ObtenerAdmin();
@@ -186,7 +203,7 @@ public class ShowArtist extends javax.swing.JFrame {
        {
            Cancion=as.getArreglo(ListaCanciones.get(i));
            llave=String.join("|",Cancion[2],Cancion[0]);
-           info=String.join("|",Cancion[1],Cancion[3],User, dt,"1");
+           info=String.join("|",Cancion[3],User, dt,"1");
            ab.Add(llave, info, "C:\\MEIA\\arbol_binario.txt", "C:\\MEIA\\desc_arbol_binario.txt", 2, User);
        }
         
@@ -194,14 +211,16 @@ public class ShowArtist extends javax.swing.JFrame {
 
     private void JBTNMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBTNMostrarActionPerformed
         // TODO add your handling code here:
+        JTAList.setText("");
          ArbolBinario ab = new ArbolBinario();
         ArrayList<String> ListaCanciones = new ArrayList<>();
         ListaCanciones=ab.getAll("C:\\MEIA\\arbol_binario.txt");
         String[] LineaCancion;
-        
+        Collections.sort(ListaCanciones);
         for(int i=0; i<ListaCanciones.size();i++)
         {
             LineaCancion=ab.getArreglo(ListaCanciones.get(i));
+            JTAList.append("Codigo de canción: "+LineaCancion[3]+"\tArtista: "+LineaCancion[2]+"\n");
         }
         
         
@@ -248,8 +267,8 @@ public class ShowArtist extends javax.swing.JFrame {
     private javax.swing.JButton JBTNMostrar;
     private javax.swing.JButton JBTNMover;
     private javax.swing.JButton JBTNReturn;
+    private javax.swing.JTextArea JTAList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
