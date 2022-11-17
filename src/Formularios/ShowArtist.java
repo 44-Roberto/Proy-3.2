@@ -14,6 +14,7 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -209,18 +210,51 @@ public class ShowArtist extends javax.swing.JFrame {
         
     }//GEN-LAST:event_JBTNMoverActionPerformed
 
+    
+    
     private void JBTNMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBTNMostrarActionPerformed
         // TODO add your handling code here:
         JTAList.setText("");
          ArbolBinario ab = new ArbolBinario();
         ArrayList<String> ListaCanciones = new ArrayList<>();
+        ArrayList<String> auxiliar = new ArrayList<>();
+        
         ListaCanciones=ab.getAll("C:\\MEIA\\arbol_binario.txt");
+        
         String[] LineaCancion;
-        Collections.sort(ListaCanciones);
+         String[] LineaCancion2;
+         
+        
+       
+        
+        for(int j=0; j<ListaCanciones.size()-1;j++)
+        {
+            int indicemenor=j;
+            
+             
+            for(int k=j+1;k<ListaCanciones.size();k++)
+            {
+                LineaCancion2=ab.getArreglo(ListaCanciones.get(indicemenor));
+                LineaCancion=ab.getArreglo(ListaCanciones.get(k));
+                if(LineaCancion[2].compareTo(LineaCancion2[2])<0)
+                {
+                     indicemenor=k;
+                }
+            }
+            auxiliar.add(ListaCanciones.get(indicemenor));
+           String line=ListaCanciones.get(indicemenor);
+          
+           ListaCanciones.set(indicemenor, ListaCanciones.get(j));
+           ListaCanciones.set(j, line);
+            
+            
+           
+        }
+       
         for(int i=0; i<ListaCanciones.size();i++)
         {
             LineaCancion=ab.getArreglo(ListaCanciones.get(i));
-            JTAList.append("Codigo de canción: "+LineaCancion[3]+"\tArtista: "+LineaCancion[2]+"\n");
+            JTAList.append("\tArtista: "+LineaCancion[2]+"Codigo de canción: "+LineaCancion[3]+"\n");
         }
         
         

@@ -57,7 +57,7 @@ public class ArbolBinario {
                 dir = true;
             }else{
                 puntero = temp[1];
-                dir = true;
+                dir = false;
             }
             int pos = 0;
             
