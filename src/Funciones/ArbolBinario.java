@@ -233,7 +233,12 @@ public class ArbolBinario {
         } 
         
     }
-    
+    public String[] getArreglo(String Linea)
+    {
+        String[] arreglo =Linea.split("[|]");
+        
+        return arreglo;
+    }
     private void setDescriptor(String[][] descriptor, String Path, int n){
         try
         {     
